@@ -2,6 +2,7 @@
 #define VL53L0X_h
 
 #include <Arduino.h>
+#include <Wire.h>
 
 class VL53L0X
 {
@@ -95,8 +96,9 @@ class VL53L0X
     enum vcselPeriodType { VcselPeriodPreRange, VcselPeriodFinalRange };
 
     uint8_t last_status; // status of last I2C transmission
+    TwoWire* _wire;
 
-    VL53L0X(void);
+    VL53L0X(TwoWire *wire);
 
     void setAddress(uint8_t new_addr);
     inline uint8_t getAddress(void) { return address; }
